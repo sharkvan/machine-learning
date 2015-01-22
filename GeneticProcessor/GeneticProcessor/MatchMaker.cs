@@ -31,24 +31,24 @@ namespace GeneticProcessor
             Dictionary<Tuple<int, int>, Match> result = new Dictionary<Tuple<int, int>, Match>();
             //Dictionary<int, int> hits = new Dictionary<int, int>();
 
-            do
-            {
-                mattingPool = new List<Chromosome>();
-                while (mattingPool.Count < population.Count)
-                {
-                    int fitness = wheel.GetFitnessValue();
-                    //int max = (int)Math.Round(population.Count * wheel.SelectionProbabilities[fitness], 0);
+            //do
+            //{
+            //    mattingPool = new List<Chromosome>();
+            //    while (mattingPool.Count < population.Count)
+            //    {
+            //        int fitness = wheel.GetFitnessValue();
+            //        //int max = (int)Math.Round(population.Count * wheel.SelectionProbabilities[fitness], 0);
 
-                    //if (!hits.ContainsKey(fitness))
-                    //    hits.Add(fitness, 1);
-                    //else
-                    //    hits[fitness]++;
+            //        //if (!hits.ContainsKey(fitness))
+            //        //    hits.Add(fitness, 1);
+            //        //else
+            //        //    hits[fitness]++;
 
-                    //if (hits[fitness] <= max)
-                    mattingPool.Add(population.GetMate(fitness));
-                }
-                //This do,while loop makes ure that we have atleast more than one possible mate.
-            } while (mattingPool.Select(i => i.Fitness).Distinct().Count() <= 1);
+            //        //if (hits[fitness] <= max)
+            //        mattingPool.Add(population.GetMate(fitness));
+            //    }
+            //    //This do,while loop makes ure that we have atleast more than one possible mate.
+            //} while (mattingPool.Select(i => i.Fitness).Distinct().Count() <= 1);
 
             //Use the % to find what fitness number to use. The random number should be between two % values, always use the fitness from the larger value.
             //The look for the chomosome that has that fitness. If more than one does randomly select one.
@@ -58,8 +58,8 @@ namespace GeneticProcessor
 
             while (result.Count < matchesNeeded)
             {
-                Chromosome patternal = mattingPool[randomNumber.Next(mattingPool.Count)];
-                Chromosome matternal = mattingPool[randomNumber.Next(mattingPool.Count)];
+                Chromosome patternal = population.GetMate(wheel.GetFitnessValue());
+                Chromosome matternal = population.GetMate(wheel.GetFitnessValue());
 
                 //This makes sure that there is no asexual matting.
                 if (patternal.Equals(matternal))
