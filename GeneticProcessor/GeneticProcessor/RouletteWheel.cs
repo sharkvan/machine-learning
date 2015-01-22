@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GeneticProcessor
@@ -23,6 +24,23 @@ namespace GeneticProcessor
                     for (int j = 0; j < slots && index < wheel.Length; ++j, ++index)
                         wheel[index] = i.Key;
                 });
+
+            Suffle(wheel);
+            Suffle(wheel);
+            Suffle(wheel);
+        }
+
+        private static void Suffle(int[] wheel)
+        {
+            Random randomNumber = new Random();
+
+            for (int i = wheel.Length - 1; i > 1; --i)
+            {
+                int j = randomNumber.Next(0, i);
+                int item = wheel[j];
+                wheel[j] = wheel[i];
+                wheel[i] = item;
+            }
         }
 
         /// <summary>
@@ -31,8 +49,9 @@ namespace GeneticProcessor
         /// <returns></returns>
         public int GetFitnessValue()
         {
-            int spinNumber = (int)(randomNumber.NextDouble()*1000);
+            int spinNumber = (int)(randomNumber.NextDouble() * 1000);
             int fitnessValue = wheel[spinNumber];
+
             return fitnessValue;
 
             //Chromosome patternal;
