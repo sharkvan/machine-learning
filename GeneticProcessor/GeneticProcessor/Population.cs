@@ -1,25 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GeneticProcessor
 {
-    public class Population : IEnumerable<Chromosome>
+    public class Population : IPopulation
     {
-        List<Chromosome> _population;
+        List<IChromosome> _population;
         Random randomNumber = new Random();
 
-        public Population(IEnumerable<Chromosome> population)
+        public Population(IEnumerable<IChromosome> population)
         {
-            _population = new List<Chromosome>(population);
+            _population = new List<IChromosome>(population);
             Fitness = CalculatePopulationFitness(population);
         }
 
-        public Chromosome GetMate(int fitness)
+        public IChromosome GetMate(int fitness)
         {
-            List<Chromosome> mates = _population.Where(mate => mate.Fitness.Equals(fitness)).ToList();
+            List<IChromosome> mates = _population.Where(mate => mate.Fitness.Equals(fitness)).ToList();
 
             if (mates.Count == 1)
                 return mates[0];
@@ -27,11 +25,11 @@ namespace GeneticProcessor
                 return mates[randomNumber.Next(0, mates.Count-1)];
         }
 
-        private static int CalculatePopulationFitness(IEnumerable<Chromosome> population)
+        private static int CalculatePopulationFitness(IEnumerable<IChromosome> population)
         {
             int result = 0;
 
-            foreach (Chromosome chromosome in population)
+            foreach (IChromosome chromosome in population)
                 result += chromosome.Fitness;
 
             return result;
@@ -44,7 +42,7 @@ namespace GeneticProcessor
             get { return _population.Count; }
         }
 
-        public IEnumerator<Chromosome> GetEnumerator()
+        public IEnumerator<IChromosome> GetEnumerator()
         {
             return _population.GetEnumerator();
         }

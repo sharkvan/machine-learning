@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace GeneticProcessor
 {
     [DebuggerDisplay("{Fitness}")]
-    public class Chromosome
+    public class Chromosome : IChromosome
     {
         private int _fitness;
 

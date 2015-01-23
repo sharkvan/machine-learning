@@ -40,7 +40,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Chromosome.cs" />
+    <Compile Include="IChromosome.cs" />
     <Compile Include="IEnumerableExtensions.cs" />
+    <Compile Include="IPopulation.cs" />
+    <Compile Include="IRouletteWheel.cs" />
+    <Compile Include="Linq\ForEachEnumerable.cs" />
+    <Compile Include="Linq\ForEachEnumerator.cs" />
     <Compile Include="Match.cs" />
     <Compile Include="MatchMaker.cs" />
     <Compile Include="Population.cs" />

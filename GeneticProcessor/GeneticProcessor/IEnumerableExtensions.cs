@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeneticProcessor.Linq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,14 @@ namespace GeneticProcessor
 {
     static class IEnumerableExtensions
     {
-        public static void ForEach<T>(this IEnumerable<T> list, Action<T> action)
+        public static IEnumerable<T> ForEach<T>(this IEnumerable<T> list, Action<T> action)
         {
-            using (IEnumerator<T> enumerator = list.GetEnumerator())
-                while (enumerator.MoveNext())
-                    action(enumerator.Current);
+            return new ForEachEnumerable<T>(list, action);
+        }
+
+        public static void Run<T>(this IEnumerable<T> list)
+        {
+            foreach (T item in list) ;
         }
     }
 }

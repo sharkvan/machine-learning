@@ -8,31 +8,39 @@ namespace Tests.MatchMakerTests
     [TestClass]
     public class WhenThePopulationHasOneMember
     {
-        MatchMaker target = Senarios.OneMemberPopulation;
-        
-
         [TestMethod]
         public void ThenThereShouldBeNoMatches()
         {
-            Assert.AreEqual(0, target.Matches.Count());
+            Assert.AreEqual(0,
+                Scenarios.OneMemberPopulation.MatchMaker.Matches.Count());
         }
 
-        //[TestMethod]
-        //public void ThenThereShouldBeOneFintessProbability()
-        //{
-        //    Assert.AreEqual(1, target.SelectionProbabilities.Count);
-        //}
+        [TestMethod]
+        public void ThenThereShouldBeOneFintessProbability()
+        {
+            Assert.AreEqual(1,
+                Scenarios.OneMemberPopulation.RouletteWheel.SelectionProbabilities.Count);
+        }
 
-        //[TestMethod]
-        //public void TheOneFintessProbabilityShouldBe100Percent()
-        //{
-        //    Assert.AreEqual(1, target.SelectionProbabilities[10]);
-        //}
+        [TestMethod]
+        public void TheOneFintessProbabilityShouldBe100Percent()
+        {
+            Assert.AreEqual(1,
+                Scenarios.OneMemberPopulation.RouletteWheel.SelectionProbabilities[10]);
+        }
 
-        //[TestMethod]
-        //public void ThePopulationFitnessShouldEqualTheOneMember()
-        //{
-        //    Assert.AreEqual(10, target.Population.Fitness);
-        //}
+        [TestMethod]
+        public void ThePopulationFitnessShouldEqualTheOneMember()
+        {
+            Assert.AreEqual(10,
+                Scenarios.OneMemberPopulation.Population.Fitness);
+        }
+
+        [TestMethod]
+        public void TheRouletteWheelShouldReturnTheOnlyFitness()
+        {
+            Assert.AreEqual(10,
+                Scenarios.OneMemberPopulation.RouletteWheel.GetFitnessValue());
+        }
     }
 }
