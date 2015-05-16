@@ -7,7 +7,7 @@ namespace GeneticProcessor
     public class Population : IPopulation
     {
         List<IChromosome> _population;
-        Random randomNumber = new Random();
+        static Random randomNumber = new Random();
 
         public Population(IEnumerable<IChromosome> population)
         {
@@ -19,7 +19,7 @@ namespace GeneticProcessor
         {
             List<IChromosome> mates = _population.Where(mate => mate.Fitness.Equals(fitness)).ToList();
 
-            if (mates.Count == 1)
+            if (mates.Count <= 1)
                 return mates[0];
             else
                 return mates[randomNumber.Next(0, mates.Count-1)];

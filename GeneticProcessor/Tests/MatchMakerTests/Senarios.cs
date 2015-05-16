@@ -20,7 +20,7 @@ namespace Tests.MatchMakerTests.Scenarios
     static class OneMemberPopulation
     {
         public static Chromosome[] Chromosomes = new Chromosome[]{
-            new Chromosome(10)};
+            new Chromosome(new NumericGene[]{new NumericGene(10)})};
 
         public static Population Population = new Population(
             Chromosomes);
@@ -36,10 +36,10 @@ namespace Tests.MatchMakerTests.Scenarios
     static class FullPopulation
     {
         public static Chromosome[] Chromosomes = new Chromosome[]{
-                new Chromosome(169),
-                new Chromosome(576),
-                new Chromosome(64),
-                new Chromosome(361)};
+                new Chromosome(new NumericGene[]{new NumericGene(169)}),
+                new Chromosome(new NumericGene[]{new NumericGene(576)}),
+                new Chromosome(new NumericGene[]{new NumericGene(64)}),
+                new Chromosome(new NumericGene[]{new NumericGene(361)})};
 
         public static Population Population = new Population(
             Chromosomes);

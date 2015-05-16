@@ -41,7 +41,7 @@ namespace GeneticProcessor
                 if (result.ContainsKey(key))
                     continue;
 
-                result.Add(key, new Match() { Patternal = patternal, Matternal = matternal });
+                result.Add(key, new Match(patternal, matternal));
             }
 
             return result.Values;

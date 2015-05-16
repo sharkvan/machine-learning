@@ -6,7 +6,7 @@ namespace GeneticProcessor
 {
     public class RouletteWheel : IRouletteWheel
     {
-        Random randomNumber = new Random();
+        static Random randomNumber = new Random();
         int[] wheel = new int[1000];
 
         public RouletteWheel(IPopulation population)
@@ -29,8 +29,6 @@ namespace GeneticProcessor
 
         private static void Suffle(int[] wheel)
         {
-            Random randomNumber = new Random();
-
             for (int i = wheel.Length - 1; i > 1; --i)
             {
                 int j = randomNumber.Next(0, i);
